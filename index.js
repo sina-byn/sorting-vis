@@ -9,8 +9,8 @@ import { capitalize, getRandomArray } from './src/utils/utils';
   const sortButton = document.querySelector('.sort-button');
   const algorithmDropdown = new Dropdown({
     parent: '.algorithm-dropdown',
-    items: ['bubble sort'],
-    className: 'w-32',
+    items: ['bubble sort', 'selection sort'],
+    className: 'w-36',
     transformFn: value =>
       value
         .split(' ')
@@ -20,7 +20,6 @@ import { capitalize, getRandomArray } from './src/utils/utils';
   let bars;
 
   const createBars = () => {
-    // const barsCount = document.querySelector('');
     const barsCount = 10;
     const gapsCount = barsCount - 1;
     const randomArray = getRandomArray({ length: barsCount, min: 7, max: 93 });

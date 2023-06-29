@@ -1,7 +1,6 @@
 // * utils
-import { sleep } from "./utils";
+import { sleep } from './utils';
 
-// * bubble sort
 const bubbleSort = async (bars, length) => {
   for (let i = 0; i < length; i++) {
     for (let j = 0; j < length - i - 1; j++) {
@@ -35,4 +34,50 @@ const bubbleSort = async (bars, length) => {
   }
 };
 
-export { bubbleSort };
+const selectionSort = async (bars, length) => {
+  let minIdx;
+
+  for (let i = 0; i < length - 1; i++) {
+    minIdx = i;
+
+    for (let j = i + 1; j < length; j++) {
+      const firstValue = Number(bars[minIdx].dataset.value);
+      const secondValue = Number(bars[j].dataset.value);
+
+      bars[minIdx].style.backgroundColor = 'purple';
+      bars[j].style.backgroundColor = 'blue';
+
+      await sleep(250);
+
+      if (firstValue > secondValue) {
+        bars[minIdx].style.backgroundColor = 'red';
+        bars[j].style.backgroundColor = 'purple';
+        minIdx = j;
+        await sleep(250);
+      } else {
+        bars[j].style.backgroundColor = 'green';
+        await sleep(250);
+        bars[j].style.backgroundColor = 'red';
+      }
+    }
+
+    if (minIdx !== i) {
+      const temp = bars[i].dataset.transform;
+
+      bars[i].dataset.transform = bars[minIdx].dataset.transform;
+      bars[i].style.transform = `translateX(${bars[minIdx].dataset.transform}px)`;
+
+      bars[minIdx].dataset.transform = temp;
+      bars[minIdx].style.transform = `translateX(${temp}px)`;
+
+      await sleep(550);
+
+      [bars[i], bars[minIdx]] = [bars[minIdx], bars[i]];
+    }
+
+    bars[i].style.backgroundColor = 'red';
+    bars[minIdx].style.backgroundColor = 'red';
+  }
+};
+
+export { bubbleSort, selectionSort };

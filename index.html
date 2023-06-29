@@ -17,7 +17,13 @@
   <body class="grid grid-rows-[auto,_1fr] h-screen overflow-x-hidden">
     <header class="controls flex gap-x-2 p-3">
       <div class="algorithm-dropdown"></div>
-      <button type="button" class="sort-button focus:outline-none">Sort</button>
+      <button
+        type="button"
+        class="sort-button bg-blue-500 hover:bg-blue-600 text-white rounded-md px-4 focus:outline-none"
+      >
+        <i class="fa-solid fa-arrow-down-short-wide mr-2"></i>
+        Sort
+      </button>
     </header>
     <main>
       <div class="bars-container grid grid-cols-1 w-full h-full mx-auto px-10 lg:px-[75px]"></div>
