@@ -1,5 +1,5 @@
 // * utils
-import { sleep, swapBars } from './utils';
+import { isSorted, shuffleBars, sleep, swapBars } from './utils';
 
 const bubbleSort = async (bars, length) => {
   for (let i = 0; i < length; i++) {
@@ -107,4 +107,10 @@ const quickSort = async (bars, low, high) => {
   }
 };
 
-export { bubbleSort, selectionSort, quickSort };
+const bogoSort = async (bars, length) => {
+  while (!isSorted(bars, length)) {
+    await shuffleBars(bars, length);
+  }
+};
+
+export { bubbleSort, selectionSort, quickSort, bogoSort };

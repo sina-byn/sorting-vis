@@ -9,7 +9,7 @@ import { capitalize, getRandomArray } from './src/utils/utils';
   const sortButton = document.querySelector('.sort-button');
   const algorithmDropdown = new Dropdown({
     parent: '.algorithm-dropdown',
-    items: ['bubble sort', 'selection sort', 'quick sort'],
+    items: ['bubble sort', 'selection sort', 'quick sort', 'bogo sort'],
     className: 'w-36',
     transformFn: value =>
       value

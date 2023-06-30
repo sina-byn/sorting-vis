@@ -29,4 +29,29 @@ const swapBars = (bars, i, j) => {
   [bars[i], bars[j]] = [bars[j], bars[i]];
 };
 
-export { getRandomInt, getRandomArray, sleep, capitalize, swapBars };
+const shuffleBars = async (bars, length) => {
+  for (let i = 0; i < length; i++) {
+    const j = Math.floor(Math.random() * (i + 1));
+    bars[i].style.backgroundColor = 'blue';
+    bars[j].style.backgroundColor = 'blue';
+    swapBars(bars, i, j);
+    await sleep(550);
+    bars[i].style.backgroundColor = 'red';
+    bars[j].style.backgroundColor = 'red';
+  }
+};
+
+const isSorted = (bars, length) => {
+  for (let i = 1; i < length; i++) {
+    const firstValue = Number(bars[i].dataset.value);
+    const secondValue = Number(bars[i - 1].dataset.value);
+
+    if (secondValue < firstValue) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+export { getRandomInt, getRandomArray, sleep, capitalize, swapBars, shuffleBars, isSorted };
