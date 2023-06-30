@@ -1,12 +1,13 @@
 // * utils
 import Dropdown from './src/components/Dropdown';
 import sort from './src/utils/sort';
-import { capitalize, getRandomArray } from './src/utils/utils';
+import { capitalize, getRandomArray, sleep } from './src/utils/utils';
 
 (() => {
   'use strict';
   const barsContainer = document.querySelector('.bars-container');
   const sortButton = document.querySelector('.sort-button');
+  const regenerateButton = document.querySelector('.regenerate-button');
   const algorithmDropdown = new Dropdown({
     parent: '.algorithm-dropdown',
     items: ['bubble sort', 'selection sort', 'quick sort', 'bogo sort'],
@@ -20,13 +21,13 @@ import { capitalize, getRandomArray } from './src/utils/utils';
   let bars;
 
   const createBars = () => {
-    const barsCount = 10;
+    const barsCount = 5;
     const gapsCount = barsCount - 1;
     const randomArray = getRandomArray({ length: barsCount, min: 7, max: 93 });
-    const parentPadding =
-      parseInt(getComputedStyle(barsContainer).getPropertyValue('padding-inline')) * 2;
-    const barWidth = (window.innerWidth - parentPadding - gapsCount * 2.5) / barsCount;
+    const padding = parseInt(getComputedStyle(barsContainer).getPropertyValue('padding-left'));
+    const barWidth = (window.innerWidth - padding * 2 - gapsCount * 2.5) / barsCount;
 
+    barsContainer.innerHTML = '';
     randomArray.forEach((rand, idx) => {
       const bar = document.createElement('div');
 
@@ -46,5 +47,26 @@ import { capitalize, getRandomArray } from './src/utils/utils';
 
   createBars();
 
+  regenerateButton.addEventListener('click', createBars);
   sortButton.addEventListener('click', () => sort(algorithmDropdown.value, bars));
+
+  window.addEventListener('sortstart', () => {
+    sortButton.setAttribute('disabled', '');
+    regenerateButton.setAttribute('disabled', '');
+    algorithmDropdown.disabled = true;
+  });
+
+  window.addEventListener('sortend', async () => {
+    for (let i = 0; i < bars.length; i++) {
+      bars[i].style.backgroundColor = 'pink';
+      await sleep(100);
+    }
+
+    await sleep(500);
+
+    bars.forEach(bar => (bar.style.backgroundColor = 'red'));
+    sortButton.removeAttribute('disabled');
+    regenerateButton.removeAttribute('disabled');
+    algorithmDropdown.disabled = false;
+  });
 })();

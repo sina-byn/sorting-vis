@@ -10,8 +10,9 @@ class Dropdown {
     this.dropdown = dropdown;
     this.button = dropdownButton;
     this.items = dropdownItems;
-    this.isExpanded = false;
     this._value = items[0];
+    this._disabled = false;
+    this.isExpanded = false;
     this.transformFn = transformFn;
 
     dropdown.className = clsx('dropdown flex items-center justify-between relative', className);
@@ -74,7 +75,26 @@ class Dropdown {
     this.expandToggler(false);
   }
 
+  get disabled() {
+    return this._disabled;
+  }
+
+  set disabled(state) {
+    this._disabled = state;
+
+    if (state) {
+      if (this.isExpanded) this.expandToggler();
+      console.log(state);
+      this.button.classList.add('cursor-not-allowed', 'text-gray-500/50');
+      return;
+    }
+
+    this.button.classList.remove('cursor-not-allowed', 'text-gray-500/50');
+  }
+
   expandToggler() {
+    if (this.disabled) return;
+
     const buttonIcon = this.button.lastChild;
     this.isExpanded = !this.isExpanded;
 

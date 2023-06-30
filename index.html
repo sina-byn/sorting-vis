@@ -19,14 +19,24 @@
       <div class="algorithm-dropdown"></div>
       <button
         type="button"
-        class="sort-button bg-blue-500 hover:bg-blue-600 text-white rounded-md px-4 focus:outline-none"
+        class="regenerate-button bg-blue-500 hover:bg-blue-600 text-white rounded-md px-4 focus:outline-none disabled:opacity-75 disabled:cursor-not-allowed"
+      >
+        <i class="fa-solid fa-repeat mr-2"></i>
+        Regenerate
+      </button>
+      <button
+        type="button"
+        class="sort-button bg-blue-500 hover:bg-blue-600 text-white rounded-md px-4 focus:outline-none disabled:opacity-75 disabled:cursor-not-allowed"
       >
         <i class="fa-solid fa-arrow-down-short-wide mr-2"></i>
         Sort
       </button>
     </header>
     <main>
-      <div class="bars-container grid grid-cols-1 w-full h-full mx-auto px-10 lg:px-[75px]"></div>
+      <div
+        class="bars-container grid grid-cols-1 w-full h-full mx-auto px-10 lg:px-[75px] overflow-x-auto"
+      ></div>
     </main>
+    <footer class="credits"></footer>
   </body>
 </html>
