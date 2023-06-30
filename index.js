@@ -1,5 +1,7 @@
-// * utils
+// * components
 import Dropdown from './src/components/Dropdown';
+
+// * utils
 import sort from './src/utils/sort';
 import { capitalize, getRandomArray, sleep } from './src/utils/utils';
 
@@ -25,7 +27,7 @@ import { capitalize, getRandomArray, sleep } from './src/utils/utils';
     const gapsCount = barsCount - 1;
     const randomArray = getRandomArray({ length: barsCount, min: 7, max: 93 });
     const padding = parseInt(getComputedStyle(barsContainer).getPropertyValue('padding-left'));
-    const barWidth = (window.innerWidth - padding * 2 - gapsCount * 2.5) / barsCount;
+    const barWidth = (document.body.clientWidth - padding * 2 - gapsCount * 2.5) / barsCount;
 
     barsContainer.innerHTML = '';
     randomArray.forEach((rand, idx) => {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-zinc-800">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="./main.css" />
     <script type="module" src="./index.js" defer></script>
   </head>
-  <body class="grid grid-rows-[auto,_1fr] h-screen overflow-x-hidden">
+  <body
+    class="grid grid-rows-[auto,_1fr] max-w-[1000px] h-screen bg-gray-200 overflow-x-hidden mx-auto"
+  >
     <header class="controls flex gap-x-2 p-3">
       <div class="algorithm-dropdown"></div>
       <button
@@ -34,9 +36,19 @@
     </header>
     <main>
       <div
-        class="bars-container grid grid-cols-1 w-full h-full mx-auto px-10 lg:px-[75px] overflow-x-auto"
+        class="bars-container grid grid-cols-1 w-full h-full mx-auto px-10 lg:px-[150px] xl:px-[250px] overflow-x-auto"
       ></div>
     </main>
-    <footer class="credits"></footer>
+    <footer class="credits text-xs text-zinc-600 text-center border-t border-zinc-800 py-2">
+      Developed by
+      <a
+        target="_blank"
+        rel="noreferrer noopner"
+        class="portfolio-link underline"
+        href="https://portfolio-sina-byn.vercel.app/"
+      >
+        Sina Bayandorian
+      </a>
+    </footer>
   </body>
 </html>
