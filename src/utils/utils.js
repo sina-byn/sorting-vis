@@ -46,9 +46,7 @@ const isSorted = (bars, length) => {
     const firstValue = Number(bars[i].dataset.value);
     const secondValue = Number(bars[i - 1].dataset.value);
 
-    if (secondValue < firstValue) {
-      return false;
-    }
+    if (secondValue > firstValue) return false;
   }
 
   return true;
