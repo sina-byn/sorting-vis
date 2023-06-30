@@ -54,4 +54,25 @@ const isSorted = (bars, length) => {
   return true;
 };
 
-export { getRandomInt, getRandomArray, sleep, capitalize, swapBars, shuffleBars, isSorted };
+const debounce = (func, delay = 500) => {
+  let timerId;
+
+  return (...args) => {
+    clearTimeout(timerId);
+
+    timerId = setTimeout(() => {
+      func.apply(null, args);
+    }, delay);
+  };
+};
+
+export {
+  getRandomInt,
+  getRandomArray,
+  sleep,
+  capitalize,
+  swapBars,
+  shuffleBars,
+  isSorted,
+  debounce,
+};
