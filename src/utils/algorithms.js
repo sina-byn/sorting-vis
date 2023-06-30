@@ -1,5 +1,5 @@
 // * utils
-import { sleep } from './utils';
+import { sleep, swapBars } from './utils';
 
 const bubbleSort = async (bars, length) => {
   for (let i = 0; i < length; i++) {
@@ -12,15 +12,7 @@ const bubbleSort = async (bars, length) => {
       await sleep(300);
 
       if (firstValue > secondValue) {
-        const temp = bars[j + 1].dataset.transform;
-
-        bars[j + 1].dataset.transform = bars[j].dataset.transform;
-        bars[j + 1].style.transform = `translateX(${bars[j].dataset.transform}px)`;
-
-        bars[j].dataset.transform = temp;
-        bars[j].style.transform = `translateX(${temp}px)`;
-
-        [bars[j], bars[j + 1]] = [bars[j + 1], bars[j]];
+        swapBars(bars, j, j + 1);
         await sleep(550);
       } else {
         bars[j].style.backgroundColor = 'green';
@@ -62,17 +54,8 @@ const selectionSort = async (bars, length) => {
     }
 
     if (minIdx !== i) {
-      const temp = bars[i].dataset.transform;
-
-      bars[i].dataset.transform = bars[minIdx].dataset.transform;
-      bars[i].style.transform = `translateX(${bars[minIdx].dataset.transform}px)`;
-
-      bars[minIdx].dataset.transform = temp;
-      bars[minIdx].style.transform = `translateX(${temp}px)`;
-
+      swapBars(bars, i, minIdx);
       await sleep(550);
-
-      [bars[i], bars[minIdx]] = [bars[minIdx], bars[i]];
     }
 
     bars[i].style.backgroundColor = 'red';
@@ -80,4 +63,48 @@ const selectionSort = async (bars, length) => {
   }
 };
 
-export { bubbleSort, selectionSort };
+const lomutoPartition = async (bars, low, high) => {
+  const pivotBar = bars[high];
+  const pivot = Number(pivotBar.dataset.value);
+  pivotBar.style.backgroundColor = 'purple';
+
+  let i = low;
+
+  for (let j = low; j < high; j++) {
+    const secondBar = bars[j];
+    const secondValue = Number(secondBar.dataset.value);
+
+    secondBar.style.backgroundColor = 'blue';
+
+    if (secondValue <= pivot) {
+      bars[i].style.backgroundColor = 'blue';
+      swapBars(bars, i, j);
+      await sleep(550);
+      bars[j].style.backgroundColor = 'red';
+      bars[i].style.backgroundColor = 'red';
+      i++;
+    } else {
+      secondBar.style.backgroundColor = 'red';
+    }
+  }
+
+  bars[high].style.backgroundColor = 'purple';
+  bars[i].style.backgroundColor = 'blue';
+  swapBars(bars, i, high);
+  await sleep(550);
+  bars[high].style.backgroundColor = 'red';
+  bars[i].style.backgroundColor = 'red';
+
+  return i;
+};
+
+const quickSort = async (bars, low, high) => {
+  if (low < high) {
+    const pivotIdx = await lomutoPartition(bars, low, high);
+
+    await quickSort(bars, low, pivotIdx - 1);
+    await quickSort(bars, pivotIdx + 1, high);
+  }
+};
+
+export { bubbleSort, selectionSort, quickSort };

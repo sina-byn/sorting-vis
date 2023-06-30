@@ -48,7 +48,7 @@ class Dropdown {
       dropdownItem.dataset.value = item;
       dropdownItem.className = clsx(
         'dropdown-item cursor-pointer hover:bg-gray-200',
-        'odd:border-b last:border-b-0 border-gray-300 px-2 pb-0.5'
+        'border-b last:border-b-0 border-gray-300 px-2 pb-0.5'
       );
       dropdownItems.appendChild(dropdownItem);
     });

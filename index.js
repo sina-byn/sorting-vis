@@ -9,7 +9,7 @@ import { capitalize, getRandomArray } from './src/utils/utils';
   const sortButton = document.querySelector('.sort-button');
   const algorithmDropdown = new Dropdown({
     parent: '.algorithm-dropdown',
-    items: ['bubble sort', 'selection sort'],
+    items: ['bubble sort', 'selection sort', 'quick sort'],
     className: 'w-36',
     transformFn: value =>
       value
@@ -23,7 +23,8 @@ import { capitalize, getRandomArray } from './src/utils/utils';
     const barsCount = 10;
     const gapsCount = barsCount - 1;
     const randomArray = getRandomArray({ length: barsCount, min: 7, max: 93 });
-    const parentPadding = parseInt(getComputedStyle(barsContainer).getPropertyValue('padding-inline')) * 2;
+    const parentPadding =
+      parseInt(getComputedStyle(barsContainer).getPropertyValue('padding-inline')) * 2;
     const barWidth = (window.innerWidth - parentPadding - gapsCount * 2.5) / barsCount;
 
     randomArray.forEach((rand, idx) => {

@@ -17,4 +17,16 @@ const sleep = delay =>
 
 const capitalize = str => str.slice(0, 1).toUpperCase() + str.slice(1);
 
-export { getRandomInt, getRandomArray, sleep, capitalize };
+const swapBars = (bars, i, j) => {
+  const temp = bars[i].dataset.transform;
+
+  bars[i].dataset.transform = bars[j].dataset.transform;
+  bars[i].style.transform = `translateX(${bars[j].dataset.transform}px)`;
+
+  bars[j].dataset.transform = temp;
+  bars[j].style.transform = `translateX(${temp}px)`;
+
+  [bars[i], bars[j]] = [bars[j], bars[i]];
+};
+
+export { getRandomInt, getRandomArray, sleep, capitalize, swapBars };
