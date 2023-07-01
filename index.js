@@ -22,6 +22,7 @@ import { capitalize, debounce, getRandomArray, sleep } from './src/utils/utils';
         .join(''),
   });
 
+  let windowSize;
   let isSorting = false;
   let barsCount = countInput.value;
   let bars;
@@ -83,6 +84,7 @@ import { capitalize, debounce, getRandomArray, sleep } from './src/utils/utils';
   window.addEventListener('resize', debouncedResizeBars);
   window.addEventListener('sortstart', () => {
     isSorting = true;
+    windowSize = window.innerWidth;
 
     countInput.setAttribute('disabled', '');
     sortButton.setAttribute('disabled', '');
@@ -103,5 +105,10 @@ import { capitalize, debounce, getRandomArray, sleep } from './src/utils/utils';
     sortButton.removeAttribute('disabled');
     regenerateButton.removeAttribute('disabled');
     algorithmDropdown.disabled = false;
+
+    if (windowSize !== window.innerWidth) {
+      windowSize = window.innerWidth;
+      resizeBars();
+    }
   });
 })();
