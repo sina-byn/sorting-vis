@@ -13,7 +13,7 @@ import { capitalize, debounce, getRandomArray, sleep } from './src/utils/utils';
   const countInput = document.querySelector('.count-input');
   const algorithmDropdown = new Dropdown({
     parent: '.algorithm-dropdown',
-    items: ['bubble sort', 'selection sort', 'quick sort', 'bogo sort'],
+    items: ['bubble sort', 'selection sort', 'quick sort', 'merge sort', 'bogo sort'],
     className: 'w-36',
     transformFn: value =>
       value

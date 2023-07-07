@@ -29,6 +29,21 @@ const swapBars = (bars, i, j) => {
   [bars[i], bars[j]] = [bars[j], bars[i]];
 };
 
+const swapMainAndSubBars = (main, i, sub, j) => {
+  const temp = main[i].dataset.transform;
+
+  main[i].dataset.transform = sub[j].dataset.transform;
+  main[i].style.transform = `translateX(${sub[j].dataset.transform}px)`;
+
+  sub[j].dataset.transform = temp;
+  sub[j].style.transform = `translateX(${temp}px)`;
+
+  const subItemIdx = main.indexOf(sub[j]);
+  [main[i], main[subItemIdx]] = [main[subItemIdx], main[i]];
+
+  return [main[i], main[subItemIdx]];
+};
+
 const shuffleBars = async (bars, length) => {
   for (let i = 0; i < length; i++) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -70,6 +85,7 @@ export {
   sleep,
   capitalize,
   swapBars,
+  swapMainAndSubBars,
   shuffleBars,
   isSorted,
   debounce,
