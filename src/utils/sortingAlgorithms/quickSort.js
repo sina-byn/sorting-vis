@@ -17,7 +17,7 @@ const lomutoPartition = async (bars, low, high) => {
     if (secondValue <= pivot) {
       bars[i].style.backgroundColor = 'blue';
       swapBars(bars, i, j);
-      await sleep(550);
+      await sleep(delay);
       bars[j].style.backgroundColor = 'red';
       bars[i].style.backgroundColor = 'red';
       i++;
@@ -29,19 +29,19 @@ const lomutoPartition = async (bars, low, high) => {
   bars[high].style.backgroundColor = 'purple';
   bars[i].style.backgroundColor = 'blue';
   swapBars(bars, i, high);
-  await sleep(550);
+  await sleep(delay);
   bars[high].style.backgroundColor = 'red';
   bars[i].style.backgroundColor = 'red';
 
   return i;
 };
 
-const quickSort = async (bars, low, high) => {
+const quickSort = async (bars, low, high, delay) => {
   if (low < high) {
-    const pivotIdx = await lomutoPartition(bars, low, high);
+    const pivotIdx = await lomutoPartition(bars, low, high, delay);
 
-    await quickSort(bars, low, pivotIdx - 1);
-    await quickSort(bars, pivotIdx + 1, high);
+    await quickSort(bars, low, pivotIdx - 1, delay);
+    await quickSort(bars, pivotIdx + 1, high, delay);
   }
 };
 

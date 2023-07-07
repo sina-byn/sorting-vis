@@ -17,7 +17,7 @@ const algorithms = {
 const sortStartEvent = new CustomEvent('sortstart');
 const sortEndEvent = new CustomEvent('sortend');
 
-const sort = async (algorithm, bars) => {
+const sort = async (algorithm, bars, delay) => {
   const sortFn = algorithms[algorithm];
   const { length } = bars;
 
@@ -25,10 +25,10 @@ const sort = async (algorithm, bars) => {
 
   switch (algorithm) {
     case 'quickSort':
-      await sortFn(bars, 0, length - 1);
+      await sortFn(bars, 0, length - 1, delay);
       break;
     default:
-      await sortFn(bars, length);
+      await sortFn(bars, length, delay);
   }
 
   dispatchEvent(sortEndEvent);

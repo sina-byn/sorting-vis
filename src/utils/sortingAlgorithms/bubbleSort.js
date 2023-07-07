@@ -1,7 +1,7 @@
 // * utils
 import { sleep, swapBars } from '../utils';
 
-const bubbleSort = async (bars, length) => {
+const bubbleSort = async (bars, length, delay) => {
   for (let i = 0; i < length; i++) {
     for (let j = 0; j < length - i - 1; j++) {
       const firstValue = Number(bars[j].dataset.value);
@@ -9,15 +9,15 @@ const bubbleSort = async (bars, length) => {
 
       bars[j].style.backgroundColor = 'purple';
       bars[j + 1].style.backgroundColor = 'blue';
-      await sleep(300);
+      await sleep(delay - 200);
 
       if (firstValue > secondValue) {
         swapBars(bars, j, j + 1);
-        await sleep(550);
+        await sleep(delay);
       } else {
         bars[j].style.backgroundColor = 'green';
         bars[j + 1].style.backgroundColor = 'green';
-        await sleep(300);
+        await sleep(delay - 200);
       }
 
       bars[j].style.backgroundColor = 'red';

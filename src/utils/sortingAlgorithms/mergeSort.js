@@ -1,7 +1,7 @@
 // * utils
 import { sleep, swapMainAndSubBars } from '../utils';
 
-const merge = async (bars, start, mid, end) => {
+const merge = async (bars, start, mid, end, delay) => {
   let left = bars.slice(start, mid + 1);
   let right = bars.slice(mid + 1, end + 1);
 
@@ -15,17 +15,17 @@ const merge = async (bars, start, mid, end) => {
 
     if (Number(left[i].dataset.value) <= Number(right[j].dataset.value)) {
       const swappedBars = swapMainAndSubBars(bars, k, left, i);
-      await sleep(550);
+      await sleep(delay);
       swappedBars.forEach(bar => (bar.style.backgroundColor = 'green'));
-      await sleep(250);
+      await sleep(delay - 200);
       swappedBars.forEach(bar => (bar.style.backgroundColor = 'red'));
 
       i++;
     } else {
       const swappedBars = swapMainAndSubBars(bars, k, right, j);
-      await sleep(550);
+      await sleep(delay);
       swappedBars.forEach(bar => (bar.style.backgroundColor = 'green'));
-      await sleep(250);
+      await sleep(delay - 200);
       swappedBars.forEach(bar => (bar.style.backgroundColor = 'red'));
 
       j++;
@@ -37,9 +37,9 @@ const merge = async (bars, start, mid, end) => {
     left[i].style.backgroundColor = 'blue';
     bars[k].style.backgroundColor = 'blue';
     const swappedBars = swapMainAndSubBars(bars, k, left, i);
-    await sleep(550);
+    await sleep(delay);
     swappedBars.forEach(bar => (bar.style.backgroundColor = 'green'));
-    await sleep(250);
+    await sleep(delay - 200);
     swappedBars.forEach(bar => (bar.style.backgroundColor = 'red'));
 
     i++;
@@ -50,9 +50,9 @@ const merge = async (bars, start, mid, end) => {
     right[j].style.backgroundColor = 'blue';
     bars[k].style.backgroundColor = 'blue';
     const swappedBars = swapMainAndSubBars(bars, k, right, j);
-    await sleep(550);
+    await sleep(delay);
     swappedBars.forEach(bar => (bar.style.backgroundColor = 'green'));
-    await sleep(250);
+    await sleep(delay - 200);
     swappedBars.forEach(bar => (bar.style.backgroundColor = 'red'));
 
     j++;
@@ -60,13 +60,13 @@ const merge = async (bars, start, mid, end) => {
   }
 };
 
-const mergeSort = async (bars, length) => {
+const mergeSort = async (bars, length, delay) => {
   for (let currSize = 1; currSize < length; currSize *= 2) {
     for (let start = 0; start < length - 1; start += 2 * currSize) {
       const mid = start + currSize - 1;
       const end = Math.min(start + 2 * currSize - 1, length - 1);
 
-      await merge(bars, start, mid, end);
+      await merge(bars, start, mid, end, delay);
     }
   }
 };

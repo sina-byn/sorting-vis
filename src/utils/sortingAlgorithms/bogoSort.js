@@ -1,9 +1,9 @@
 // * utils
 import { isSorted, shuffleBars } from '../utils';
 
-const bogoSort = async (bars, length) => {
+const bogoSort = async (bars, length, delay) => {
   while (!isSorted(bars, length)) {
-    await shuffleBars(bars, length);
+    await shuffleBars(bars, length, delay);
   }
 };
 

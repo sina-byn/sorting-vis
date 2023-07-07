@@ -25,8 +25,12 @@ import { capitalize, debounce, getRandomArray, sleep } from './src/utils/utils';
   let windowSize;
   let isSorting = false;
   let barsCount = countInput.value;
+  let delay;
   let bars;
 
+  const setDelay = () => {
+    delay = 550 / (barsCount - 3);
+  };
   const getBarWidth = () => {
     const gapsCount = barsCount - 1;
     const containerStyles = getComputedStyle(barsContainer);
@@ -50,6 +54,7 @@ import { capitalize, debounce, getRandomArray, sleep } from './src/utils/utils';
 
     const randomArray = getRandomArray({ length: barsCount, min: 7, max: 93 });
     const barWidth = getBarWidth(barsCount);
+    setDelay();
 
     barsContainer.innerHTML = '';
     randomArray.forEach((rand, idx) => {
@@ -62,7 +67,8 @@ import { capitalize, debounce, getRandomArray, sleep } from './src/utils/utils';
       bar.dataset.value = rand;
       bar.dataset.transform = (barWidth + 2.5) * idx;
 
-      bar.className = 'bar col-start-1 row-start-1 transition-transform duration-500';
+      bar.className = 'bar col-start-1 row-start-1 transition-transform';
+      bar.style.transitionDuration = `${delay - 50}ms`;
       bar.style.backgroundColor = 'red';
 
       barsContainer.appendChild(bar);
@@ -74,12 +80,16 @@ import { capitalize, debounce, getRandomArray, sleep } from './src/utils/utils';
   createBars();
 
   countInput.addEventListener('change', e => {
-    barsCount = e.target.value;
+    barsCount = Number(e.target.value);
+
+    setDelay();
     createBars();
+
+    bars.forEach(bar => (bar.style.transitionDuration = `${Math.max(1, delay - 50)}ms`));
   });
 
   regenerateButton.addEventListener('click', createBars);
-  sortButton.addEventListener('click', () => sort(algorithmDropdown.value, bars));
+  sortButton.addEventListener('click', () => sort(algorithmDropdown.value, bars, delay));
 
   window.addEventListener('resize', debouncedResizeBars);
   window.addEventListener('sortstart', () => {
@@ -96,7 +106,7 @@ import { capitalize, debounce, getRandomArray, sleep } from './src/utils/utils';
 
     for (let i = 0; i < bars.length; i++) {
       bars[i].style.backgroundColor = 'pink';
-      await sleep(100);
+      await sleep(barsCount * 2);
     }
 
     await sleep(500);

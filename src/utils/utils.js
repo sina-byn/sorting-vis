@@ -12,7 +12,7 @@ const getRandomArray = ({ length, min, max }) => {
 
 const sleep = delay =>
   new Promise(resolve => {
-    setTimeout(() => resolve(), delay);
+    setTimeout(() => resolve(), Math.max(1, delay));
   });
 
 const capitalize = str => str.slice(0, 1).toUpperCase() + str.slice(1);
@@ -44,13 +44,13 @@ const swapMainAndSubBars = (main, i, sub, j) => {
   return [main[i], main[subItemIdx]];
 };
 
-const shuffleBars = async (bars, length) => {
+const shuffleBars = async (bars, length, delay) => {
   for (let i = 0; i < length; i++) {
     const j = Math.floor(Math.random() * (i + 1));
     bars[i].style.backgroundColor = 'blue';
     bars[j].style.backgroundColor = 'blue';
     swapBars(bars, i, j);
-    await sleep(550);
+    await sleep(delay);
     bars[i].style.backgroundColor = 'red';
     bars[j].style.backgroundColor = 'red';
   }
