@@ -11,20 +11,20 @@ const selectionSort = async (bars, length, delay) => {
       const firstValue = Number(bars[minIdx].dataset.value);
       const secondValue = Number(bars[j].dataset.value);
 
-      bars[minIdx].style.backgroundColor = 'purple';
-      bars[j].style.backgroundColor = 'blue';
+      bars[minIdx].style.backgroundColor = '#5b21b6';
+      bars[j].style.backgroundColor = '#60a5fa';
 
       await sleep(delay - 200);
 
       if (firstValue > secondValue) {
-        bars[minIdx].style.backgroundColor = 'red';
-        bars[j].style.backgroundColor = 'purple';
+        bars[minIdx].style.backgroundColor = '#ef4444';
+        bars[j].style.backgroundColor = '#5b21b6';
         minIdx = j;
         await sleep(delay - 200);
       } else {
-        bars[j].style.backgroundColor = 'green';
+        bars[j].style.backgroundColor = '#4ade80';
         await sleep(delay - 200);
-        bars[j].style.backgroundColor = 'red';
+        bars[j].style.backgroundColor = '#ef4444';
       }
     }
 
@@ -33,8 +33,8 @@ const selectionSort = async (bars, length, delay) => {
       await sleep(delay);
     }
 
-    bars[i].style.backgroundColor = 'red';
-    bars[minIdx].style.backgroundColor = 'red';
+    bars[i].style.backgroundColor = '#ef4444';
+    bars[minIdx].style.backgroundColor = '#ef4444';
   }
 };
 

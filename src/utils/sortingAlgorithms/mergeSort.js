@@ -10,23 +10,23 @@ const merge = async (bars, start, mid, end, delay) => {
   let k = start;
 
   while (i < left.length && j < right.length) {
-    left[i].style.backgroundColor = 'blue';
-    right[j].style.backgroundColor = 'blue';
+    left[i].style.backgroundColor = '#60a5fa';
+    right[j].style.backgroundColor = '#60a5fa';
 
     if (Number(left[i].dataset.value) <= Number(right[j].dataset.value)) {
       const swappedBars = swapMainAndSubBars(bars, k, left, i);
       await sleep(delay);
-      swappedBars.forEach(bar => (bar.style.backgroundColor = 'green'));
+      swappedBars.forEach(bar => (bar.style.backgroundColor = '#4ade80'));
       await sleep(delay - 200);
-      swappedBars.forEach(bar => (bar.style.backgroundColor = 'red'));
+      swappedBars.forEach(bar => (bar.style.backgroundColor = '#ef4444'));
 
       i++;
     } else {
       const swappedBars = swapMainAndSubBars(bars, k, right, j);
       await sleep(delay);
-      swappedBars.forEach(bar => (bar.style.backgroundColor = 'green'));
+      swappedBars.forEach(bar => (bar.style.backgroundColor = '#4ade80'));
       await sleep(delay - 200);
-      swappedBars.forEach(bar => (bar.style.backgroundColor = 'red'));
+      swappedBars.forEach(bar => (bar.style.backgroundColor = '#ef4444'));
 
       j++;
     }
@@ -34,26 +34,26 @@ const merge = async (bars, start, mid, end, delay) => {
   }
 
   while (i < left.length) {
-    left[i].style.backgroundColor = 'blue';
-    bars[k].style.backgroundColor = 'blue';
+    left[i].style.backgroundColor = '#60a5fa';
+    bars[k].style.backgroundColor = '#60a5fa';
     const swappedBars = swapMainAndSubBars(bars, k, left, i);
     await sleep(delay);
-    swappedBars.forEach(bar => (bar.style.backgroundColor = 'green'));
+    swappedBars.forEach(bar => (bar.style.backgroundColor = '#4ade80'));
     await sleep(delay - 200);
-    swappedBars.forEach(bar => (bar.style.backgroundColor = 'red'));
+    swappedBars.forEach(bar => (bar.style.backgroundColor = '#ef4444'));
 
     i++;
     k++;
   }
 
   while (j < right.length) {
-    right[j].style.backgroundColor = 'blue';
-    bars[k].style.backgroundColor = 'blue';
+    right[j].style.backgroundColor = '#60a5fa';
+    bars[k].style.backgroundColor = '#60a5fa';
     const swappedBars = swapMainAndSubBars(bars, k, right, j);
     await sleep(delay);
-    swappedBars.forEach(bar => (bar.style.backgroundColor = 'green'));
+    swappedBars.forEach(bar => (bar.style.backgroundColor = '#4ade80'));
     await sleep(delay - 200);
-    swappedBars.forEach(bar => (bar.style.backgroundColor = 'red'));
+    swappedBars.forEach(bar => (bar.style.backgroundColor = '#ef4444'));
 
     j++;
     k++;

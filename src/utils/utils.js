@@ -47,12 +47,12 @@ const swapMainAndSubBars = (main, i, sub, j) => {
 const shuffleBars = async (bars, length, delay) => {
   for (let i = 0; i < length; i++) {
     const j = Math.floor(Math.random() * (i + 1));
-    bars[i].style.backgroundColor = 'blue';
-    bars[j].style.backgroundColor = 'blue';
+    bars[i].style.backgroundColor = '#60a5fa';
+    bars[j].style.backgroundColor = '#60a5fa';
     swapBars(bars, i, j);
     await sleep(delay);
-    bars[i].style.backgroundColor = 'red';
-    bars[j].style.backgroundColor = 'red';
+    bars[i].style.backgroundColor = '#ef4444';
+    bars[j].style.backgroundColor = '#ef4444';
   }
 };
 

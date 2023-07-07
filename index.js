@@ -69,7 +69,7 @@ import { capitalize, debounce, getRandomArray, sleep } from './src/utils/utils';
 
       bar.className = 'bar col-start-1 row-start-1 transition-transform';
       bar.style.transitionDuration = `${delay - 50}ms`;
-      bar.style.backgroundColor = 'red';
+      bar.style.backgroundColor = '#ef4444';
 
       barsContainer.appendChild(bar);
     });
@@ -110,7 +110,7 @@ import { capitalize, debounce, getRandomArray, sleep } from './src/utils/utils';
     }
 
     await sleep(500);
-    bars.forEach(bar => (bar.style.backgroundColor = 'red'));
+    bars.forEach(bar => (bar.style.backgroundColor = '#ef4444'));
     countInput.removeAttribute('disabled');
     sortButton.removeAttribute('disabled');
     regenerateButton.removeAttribute('disabled');
