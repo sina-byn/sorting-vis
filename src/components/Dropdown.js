@@ -84,7 +84,6 @@ class Dropdown {
 
     if (state) {
       if (this.isExpanded) this.expandToggler();
-      console.log(state);
       this.button.classList.add('cursor-not-allowed', 'text-gray-500/50');
       return;
     }
