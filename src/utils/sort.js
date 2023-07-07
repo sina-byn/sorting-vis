@@ -1,5 +1,17 @@
 // * algorithms
-import * as algorithms from './algorithms';
+import bubbleSort from './sortingAlgorithms/bubbleSort';
+import selectionSort from './sortingAlgorithms/selectionSort';
+import quickSort from './sortingAlgorithms/quickSort';
+import mergeSort from './sortingAlgorithms/mergeSort';
+import bogoSort from './sortingAlgorithms/bogoSort';
+
+const algorithms = {
+  bubbleSort,
+  selectionSort,
+  quickSort,
+  mergeSort,
+  bogoSort,
+};
 
 // * custom events
 const sortStartEvent = new CustomEvent('sortstart');
