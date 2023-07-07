@@ -106,7 +106,7 @@ import { capitalize, debounce, getRandomArray, sleep } from './src/utils/utils';
 
     for (let i = 0; i < bars.length; i++) {
       bars[i].style.backgroundColor = 'pink';
-      await sleep(barsCount * 2);
+      await sleep(1000 / barsCount);
     }
 
     await sleep(500);
