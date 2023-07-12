@@ -29,7 +29,9 @@ import { capitalize, debounce, getRandomArray, sleep } from './src/utils/utils';
   let bars;
 
   const setDelay = () => {
-    delay = 550 / (barsCount - 3);
+    const slope = ((20 - 550) / (150 - 4)) * 3;
+    const yIntercept = -1 * 4 * slope + 550;
+    delay = Math.round(slope * barsCount + yIntercept);
   };
   const getBarWidth = () => {
     const gapsCount = barsCount - 1;
