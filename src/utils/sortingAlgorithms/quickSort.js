@@ -1,7 +1,7 @@
 // * utils
 import { sleep, swapBars } from '../utils';
 
-const lomutoPartition = async (bars, low, high) => {
+const lomutoPartition = async (bars, low, high, delay) => {
   const pivotBar = bars[high];
   const pivot = Number(pivotBar.dataset.value);
   pivotBar.style.backgroundColor = '#5b21b6';
